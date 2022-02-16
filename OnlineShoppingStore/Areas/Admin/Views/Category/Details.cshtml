@@ -1,0 +1,65 @@
+﻿@model OnlineShoppingStore.Models.EntitesModel.CategoryModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<style>
+
+    .card {
+        width: 444px
+    }
+
+    body {
+        background: #eee
+    }
+
+    h4 {
+        color: black;
+    }
+
+
+
+    .elementValue {
+        color: black;
+    }
+</style>
+
+<h2 style="font-family: ' sans-serif' ; margin-left:450px">Details of Category</h2>
+
+
+<div class="d-flex justify-content-center container mt-5">
+    <div class="card p-3 bg-white">
+        <i class="fa fa-apple">
+            <h4>@Model.CategoryName</h4>
+        </i>
+        
+        <div class="stats mt-2">
+            <div class="d-flex justify-content-between p-price">
+                <span>Is Available ?</span><span class="elementValue">
+                    @if (Model.IsActive == true)
+                    {<text>Yes</text>}
+                else
+                {<text>No</text>}
+                </span>
+            </div>
+            <div class="d-flex justify-content-between p-price">
+                <span>Is Exist ?</span><span class="elementValue">
+                    @if (Model.IsDelete == true)
+                    {<text>Yes</text>}
+                else
+                {<text>No</text>}
+                </span>
+            </div>
+
+            <hr />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-warning" })
+
+
+
+
+        </div>
+
+</div>
+    </div>

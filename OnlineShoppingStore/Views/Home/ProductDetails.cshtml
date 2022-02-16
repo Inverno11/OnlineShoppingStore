@@ -1,0 +1,45 @@
+﻿@model OnlineShoppingStore.Models.EntitesModel.ProductModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<link href="~/Content/css/DetailsProductStyleSheet.css" rel="stylesheet" />
+
+<div class="container bootdey">
+    <div class="col-md-12">
+        <section class="panel">
+            <div class="panel-body">
+
+                @using (Html.BeginForm("Add", "BasketLine", FormMethod.Post))
+                {
+                    <div class="col-md-6">
+
+                        @Html.HiddenFor(mo => mo.ProductId)
+                        <div class="pro-img-details">
+                            <img src="~/Uploads/Images/@Model.ProductImage" alt="">
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="pro-d-title">
+                            <a href="#" class="">
+                                @Model.ProductName
+                            </a>
+                        </h4>
+                        <p>
+                            @Model.Description
+                        </p>
+                        <div class="product_meta">
+                            <span class="posted_in"> <strong>Category:</strong> @Model.CategoryName.</span>
+                        </div>
+                        <div class="m-bot15"> <strong>Price :</strong><span class="pro-price"> @Model.Price<span>$</span></span></div>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="text" placeholder="1" class="form-control quantity" id="quantity" name="quantity">
+                        </div>
+                        <p>
+                            <button class="btn btn-round btn-danger" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                        </p>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</div>

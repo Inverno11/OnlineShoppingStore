@@ -1,0 +1,100 @@
+﻿@model OnlineShoppingStore.Models.EntitesModel.ProductModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<style>
+
+    .card {
+        width: 444px
+    }
+
+    body {
+        background: #eee
+    }
+
+    h4 {
+        color: black;
+    }
+
+
+
+    .elementValue {
+        color: black;
+    }
+</style>
+
+<h2 style="font-family: ' sans-serif' ; margin-left:450px">Details of product</h2>
+
+
+<div class="d-flex justify-content-center container mt-5">
+    <div class="card p-3 bg-white">
+        <i class="fa fa-apple"></i>
+        <div class="about-product text-center mt-2">
+            <img src="~/Uploads/Images/@Model.ProductImage" width="300">
+
+            <div style="margin-top:8px;">
+                <h4>@Model.ProductName</h4>
+                <h6 class="mt-0 text-black-50">@Model.CategoryName</h6>
+            </div>
+        </div>
+        <div class="stats mt-2">
+            <div class="d-flex justify-content-between p-price">
+                <span>Is Available ?</span><span class="elementValue">
+                    @if (Model.IsActive == true)
+                    {<text>Yes</text>}
+                else
+                {<text>No</text>}
+                </span>
+            </div>
+            <div class="d-flex justify-content-between p-price">
+                <span>Is Exist ?</span><span class="elementValue">
+                    @if (Model.IsDelete == true)
+                    {<text>Yes</text>}
+                else
+                {<text>No</text>}
+                </span>
+            </div>
+            <div class="d-flex justify-content-between p-price">
+                <span>Is Feature ?</span><span class="elementValue">
+                    @if (Model.IsFeatured != null)
+                    {<text>Yes</text>}
+                else
+                {<text>No</text>}
+                </span>
+            </div>
+            <div class="d-flex justify-content-between p-price">
+                <span>Creation Date</span><span class="elementValue">
+                    @if (Model.CreatedDate != null)
+                    {<text>@Model.CreatedDate</text>}
+                else
+                {<text>unknown</text>}
+                </span>
+            </div>
+            <div class="d-flex justify-content-between p-price">
+                <span>Modified Date</span><span class="elementValue">
+                    @if (Model.ModifiedDate != null)
+                    {<text>@Model.ModifiedDate</text>}
+                else
+                {<text>not modified</text>}
+                </span>
+            </div>
+            <div class="d-flex justify-content-between p-price"><span>Quantity</span><span class="elementValue">@Model.Quantity</span></div>
+            <span>Description</span>
+            <div>
+                <span style="align-content:center" class="elementValue">@Model.Description</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between total font-weight-bold mt-4"><span>Price</span><span class="elementValue">$@Model.Price</span></div>
+        <hr />
+       
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-warning" })
+            
+
+        
+    </div>
+
+</div>
+

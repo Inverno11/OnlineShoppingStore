@@ -1,0 +1,43 @@
+﻿@model OnlineShoppingStore.Models.HomeIndexViewModel
+@using PagedList;
+@using PagedList.Mvc
+<link href="~/Content/css/ButtonStyle.css" rel="stylesheet" />
+<!------ Include the above in your HEAD tag ---------->
+<div class="row product-container">
+    @foreach (var item in Model.ListOfProducts)
+    {
+        <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+            <div class="thumbnail product-item" style="height:300px">
+                <img class="img-responsive" title="Click to View Product detail"
+                     style="cursor:pointer;height:160px;width:100%"
+                     src="~/Uploads/Images/@item.ProductImage" />
+                <div class="caption">
+                    <h4>@item.ProductName</h4>
+                    <p style="font-size:medium">@item.Price $.</p>
+                    <p>Available</p>
+                    <div class="product-item-badge">New</div>
+                    @Html.ActionLink("Find out", "ProductDetails", new { id = item.ProductId }, new { @class = "button-33" })
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="container">
+    @Html.PagedListPager(Model.ListOfProducts, page => Url.Action("Index", new { page, search = Request.QueryString["search"] }))
+
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<!------ Include the above in your HEAD tag ---------->
+<link href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" rel="stylesheet">
+
+
+
+
+<!--slide end-->

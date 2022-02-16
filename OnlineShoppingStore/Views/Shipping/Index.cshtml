@@ -1,0 +1,66 @@
+﻿@{ Layout = null;}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+@model IEnumerable<OnlineShoppingStore.Models.EntitesModel.ShippingModel>
+<link href="~/Content/css/ShippingIndexStyle.css" rel="stylesheet" />
+<link href="~/Content/css/ShippingStyle.css" rel="stylesheet" />
+<br />
+<div class="text-center" style="color: #ffffff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+    <span class="font-bold" style="font-size: 40px;">Information</span>
+    <small class="text-gray-400 ml-1">></small>
+    <span class="text-gray-400 ml-1" style="font-size: 25px; ">Shopping</span>
+    <small class="text-gray-400 ml-1">></small>
+    <span class="text-gray-400 ml-1" style="font-size: 20px; ">Orders</span>
+</div>
+<br />
+<div class="container mt-5">
+    
+    <table class="table table-borderless table-responsive card-1 p-4">
+        <thead>
+
+            <tr class="border-bottom">
+                <th> <span class="ml-2">Creation Time</span> </th>
+                <th> <span class="ml-2">Deliverd to</span> </th>
+                <th> <span class="ml-2">Location</span> </th>
+                <th> <span class="ml-2">Amount</span> </th>
+                <th> <span class="ml-2">Deliverd on</span> </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="border-bottom">
+                    <td>
+                        <div class="p-2"> <span class="d-block font-weight-bold">@item.CreationDate.Value.ToString("dddd")</span> <small>@item.CreationDate.Value.ToShortDateString()</small> </div>
+                    </td>
+                    <td>
+                        <div class="p-2 d-flex flex-row align-items-center mb-2">
+
+                            <div class="d-flex flex-column ml-2"> <span class="d-block font-weight-bold">@String.Concat(item.FirstName + " " + item.FirstName) </span> </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="p-2 d-flex flex-column"> <span>@item.Adress</span> <span>@item.Country</span> </div>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column ml-2"> <span class="d-block font-weight-bold">@item.AmountPaid</span> </div>
+
+                    </td>
+                    <td>
+                        <div class="p-2"> <span class="d-block font-weight-bold">@item.DeliverdOn.Value.ToString("dddd")</span> <small>@item.DeliverdOn.Value.Date</small> </div>
+
+                    </td>
+
+                </tr>
+
+            }
+        <tr>
+            <div class="modal-footer"><a class="btn btn-light" href="@Url.Action("Index","Home")"><i class="icon-arrow-left"></i>&nbsp;Back to Shopping</a></div>
+        </tr>
+        </tbody>
+    </table>
+</div>

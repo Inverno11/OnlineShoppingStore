@@ -1,0 +1,73 @@
+﻿@model IEnumerable<OnlineShoppingStore.Models.EntitesModel.ProductModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index","Product")">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active"> List of Products</li>
+
+</ol>
+<p class="thead-dark">
+
+    <a href="@Url.Action("Create","Product")" class=" btn btn-outline-primary right" style="margin-left:34px ; ">Add Product</a>
+</p>
+<br>
+
+@foreach (var item in Model)
+{
+    <link href="~/Content/css/IndexStyleSheet.css" rel="stylesheet" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card b-1 hover-shadow mb-20">
+                <div class="media card-body">
+                    <div class="media-left pr-12">
+                        <img class="avatar avatar-xl no-radius" src="~/Uploads/Images/@item.ProductImage" alt="">
+                    </div>
+                    <div class="media-body">
+                        <div class="mb-2">
+                            <span class="fs-20 pr-16">@item.ProductName</span>
+                        </div>
+                        <small class="fs-16 fw-300 ls-1">@item.Description</small>
+                    </div>
+                    <div class="media-right text-right d-none d-md-block">
+                        <p class="fs-14 text-fade mb-12">
+                            Avilable?<span>
+                                @if (@item.IsActive == true)
+                                {<text>Yes</text>}
+                            else
+                            { <text>No</text>}
+
+                            </span>
+                        </p>
+                        <span class="text-fade"><i class="fa fa-money pr-1"></i> $@item.Price</span>
+                    </div>
+                </div>
+                <footer class="card-footer flexbox align-items-center">
+                    <div>
+                        <strong>Created at</strong>
+                        <span>
+                            @if (@item.CreatedDate != null)
+                            {<text>@item.CreatedDate</text>}
+                        else
+                        { <text>Unknown</text>}
+                        </span>
+                    </div>
+                    <div class="card-hover-show">
+                        <a class="btn btn-xs fs-10 btn-bold btn-info" href="@Url.Action("Details","Product",new { id=item.ProductId})">Details</a>
+                        <a class="btn btn-xs fs-10 btn-bold btn-primary" href="@Url.Action("Edit","Product",new { id=item.ProductId})"> Edit</a>
+                        <a class="btn btn-xs fs-10 btn-bold btn-warning" href="@Url.Action("Delete","Product",new { id=item.ProductId})">Delete</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+}
+
